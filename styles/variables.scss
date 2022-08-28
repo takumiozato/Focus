@@ -1,0 +1,18 @@
+$color-primary: #0c4a6e;
+$color-secondary: #f43f5e;
+$color-text: #525252;
+$color-gray: #a3a3a3;
+$color-neutral: #fafafa;
+
+$breakpoints: (
+  'sm': 576px,
+  'md': 768px,
+  'lg': 992px,
+  'xl': 1200px,
+);
+
+@mixin mq($size) {
+  @media screen and (max-width: #{map-get($breakpoints, $size)}) {
+    @content;
+  }
+}
