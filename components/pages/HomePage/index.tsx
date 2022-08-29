@@ -1,5 +1,5 @@
 import Head from 'next/head'
-import Button from '../../ui/ButtonComponent'
+import Button from '../../elements/ButtonComponent'
 import styles from './style.module.scss'
 
 const Home = () => {
