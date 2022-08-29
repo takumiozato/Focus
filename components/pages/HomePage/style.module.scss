@@ -1,3 +1,10 @@
+@import '@variables';
+
 .buttonWrapper {
   width: 200px;
+}
+
+.body {
+  height: 100vh;
+  background: linear-gradient($color_primary, $color_primary_light);
 }

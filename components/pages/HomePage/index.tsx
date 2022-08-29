@@ -4,7 +4,7 @@ import styles from './style.module.scss'
 
 const Home = () => {
   return (
-    <div>
+    <div className={styles.body}>
       <Head>
         <title>Focus</title>
         <meta name="description" content="It's Pomodoro Timer." />
