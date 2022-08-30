@@ -1,5 +1,6 @@
 import Head from 'next/head'
-import Button from '../../elements/ButtonComponent'
+import Header from '../../elements/Header'
+import Button from '../../elements/Button'
 import styles from './style.module.scss'
 
 const Home = () => {
@@ -10,6 +11,9 @@ const Home = () => {
         <meta name="description" content="It's Pomodoro Timer." />
         <link rel="icon" href="/favicon.ico" />
       </Head>
+      <header>
+        <Header />
+      </header>
       <main>
         <p>Focus</p>
         <div className={styles.buttonWrapper}>
