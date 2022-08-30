@@ -14,12 +14,14 @@ const Home = () => {
       <header>
         <Header />
       </header>
-      <main>
-        <p>Focus</p>
-        <div className={styles.buttonWrapper}>
-          <Button color="primary" onClick={() => {}}>
-            集中開始
-          </Button>
+      <main className={styles.main}>
+        <div className={styles.timer_area}>
+          <p className={styles.timer}>25:00</p>
+          <div className={styles.buttonWrapper}>
+            <Button color="primary" onClick={() => {}}>
+              集中開始
+            </Button>
+          </div>
         </div>
       </main>
     </div>
