@@ -13,26 +13,29 @@
 }
 
 .button_primary {
-  background-color: $color_primary;
-  color: #fff;
+  background-color: #fff;
+  color: $color_primary;
+  border: 1px solid #fff;
 
   &:hover {
-    background-color: darken($color_primary, 5%);
+    background-color: darken(#fff, 15%);
   }
 }
 
 .button_secondary {
-  background-color: $color_secondary;
-  color: #fff;
+  background-color: #fff;
+  color: $color_secondary;
+  border: 1px solid #fff;
 
   &:hover {
-    background-color: darken($color_secondary, 5%);
+    background-color: darken(#fff, 15%);
   }
 }
 
 .button_skeleton {
   background-color: inherit;
   color: #fff;
+  border: 1px solid #fff;
 
   &:hover {
     background-color: rgba(#fff, 0.2);
