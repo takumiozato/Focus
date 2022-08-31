@@ -29,4 +29,8 @@
 
 .buttonWrapper {
   width: 200px;
+
+  &:not(&:last-of-type) {
+    margin-bottom: 25px;
+  }
 }

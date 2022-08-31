@@ -2,8 +2,10 @@ import Head from 'next/head'
 import Header from '../../elements/Header'
 import Button from '../../elements/Button'
 import styles from './style.module.scss'
+import useTimer from '../../../hooks/useTimer'
 
 const Home = () => {
+  const { time, start, pause, reset, runState } = useTimer({ time: '25:00' })
   return (
     <div className={styles.body}>
       <Head>
@@ -16,12 +18,35 @@ const Home = () => {
       </header>
       <main className={styles.main}>
         <div className={styles.timer_area}>
-          <p className={styles.timer}>25:00</p>
-          <div className={styles.buttonWrapper}>
-            <Button color="primary" onClick={() => {}}>
-              集中開始
-            </Button>
-          </div>
+          <p className={styles.timer}>{time}</p>
+          {runState === 'initial' && (
+            <div className={styles.buttonWrapper}>
+              <Button color="primary" onClick={start}>
+                集中開始
+              </Button>
+            </div>
+          )}
+          {runState === 'running' && (
+            <div className={styles.buttonWrapper}>
+              <Button color="skeleton" onClick={pause}>
+                一時停止
+              </Button>
+            </div>
+          )}
+          {runState === 'pause' && (
+            <>
+              <div className={styles.buttonWrapper}>
+                <Button color="primary" onClick={start}>
+                  再開
+                </Button>
+              </div>
+              <div className={styles.buttonWrapper}>
+                <Button color="skeleton" onClick={reset}>
+                  リセット
+                </Button>
+              </div>
+            </>
+          )}
         </div>
       </main>
     </div>
