@@ -1,0 +1,28 @@
+@import '@variables';
+
+.header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 15px 20px;
+
+  @include mq(lg) {
+    max-width: $contents-width;
+    margin: 0 auto;
+  }
+}
+
+.header_logo {
+  color: $color-text-white;
+  font-size: 24px;
+  font-weight: normal;
+}
+
+.header_nav_list {
+  display: flex;
+  column-gap: 25px;
+}
+
+.header_nav_link {
+  cursor: pointer;
+}
