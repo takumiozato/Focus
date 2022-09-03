@@ -1,11 +1,15 @@
+import { useState } from 'react'
 import Head from 'next/head'
 import Header from '../../elements/Header'
 import Button from '../../elements/Button'
 import styles from './style.module.scss'
 import useTimer from '../../../hooks/useTimer'
+import useInterval from '../../../hooks/useInterval'
 
 const Home = () => {
-  const { time, start, pause, reset, runState } = useTimer({ time: '25:00' })
+  const { start, pause, reset, runState } = useTimer({ time: 25 })
+  const [time, setTime] = useState(180)
+  useInterval({ onUpdate: () => setTime(time - 1) })
   return (
     <div className={styles.body}>
       <Head>

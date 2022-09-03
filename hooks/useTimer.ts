@@ -1,9 +1,9 @@
-import React, { useState } from 'react'
+import { useState } from 'react'
 
 export type RunState = 'initial' | 'running' | 'pause'
 
 type Props = {
-  time: string
+  time: number
 }
 const useTimer = (props: Props) => {
   const [time, setTime] = useState(props.time)
