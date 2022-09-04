@@ -4,10 +4,9 @@ import Header from '../../elements/Header'
 import Button from '../../elements/Button'
 import styles from './style.module.scss'
 import useTimer from '../../../hooks/useTimer'
-import useInterval from '../../../hooks/useInterval'
 
 const Home = () => {
-  const { time, start, pause, reset, runState } = useTimer({ time: 25 })
+  const { remainingTime, start, pause, reset, runState } = useTimer({ initialTime: 25 })
 
   return (
     <div className={styles.body}>
@@ -21,7 +20,7 @@ const Home = () => {
       </header>
       <main className={styles.main}>
         <div className={styles.timer_area}>
-          <p className={styles.timer}>{time}</p>
+          <p className={styles.timer}>{remainingTime}</p>
           {runState === 'initial' && (
             <div className={styles.buttonWrapper}>
               <Button color="primary" onClick={start}>

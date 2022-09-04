@@ -4,10 +4,10 @@ import useInterval from './useInterval'
 export type RunState = 'initial' | 'running' | 'pause'
 
 type Props = {
-  time: number
+  initialTime: number
 }
 const useTimer = (props: Props) => {
-  const [time, setTime] = useState(props.time)
+  const [remainingTime, setRemainingTime] = useState(props.initialTime)
   const [runState, setRunState] = useState<RunState>('initial')
 
   function start() {
@@ -26,9 +26,9 @@ const useTimer = (props: Props) => {
   }
 
   // 指定した関数を、指定した間隔で実行する
-  useInterval({ onUpdate: () => setTime(time - 1), msDelay: 1000 })
+  useInterval({ onUpdate: () => setRemainingTime(remainingTime - 1), msDelay: 1000 })
 
-  return { start, pause, reset, time, runState }
+  return { start, pause, reset, remainingTime, runState }
 }
 
 export default useTimer
