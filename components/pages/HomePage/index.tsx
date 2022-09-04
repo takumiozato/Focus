@@ -7,9 +7,8 @@ import useTimer from '../../../hooks/useTimer'
 import useInterval from '../../../hooks/useInterval'
 
 const Home = () => {
-  const { start, pause, reset, runState } = useTimer({ time: 25 })
-  const [time, setTime] = useState(180)
-  useInterval({ onUpdate: () => setTime(time - 1) })
+  const { time, start, pause, reset, runState } = useTimer({ time: 25 })
+
   return (
     <div className={styles.body}>
       <Head>
