@@ -26,7 +26,11 @@ const useTimer = (props: Props) => {
   }
 
   // 指定した関数を、指定した間隔で実行する
-  useInterval({ onUpdate: () => setRemainingTime(remainingTime - 1), msDelay: 1000 })
+  useInterval({
+    onUpdate: () => setRemainingTime(remainingTime - 1),
+    msDelay: 1000,
+    isPause: runState === 'pause',
+  })
 
   return { start, pause, reset, remainingTime, runState }
 }
