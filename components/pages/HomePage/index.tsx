@@ -6,11 +6,14 @@ import useTimer from '../../../hooks/useTimer'
 import { secondsToMinutes, minutesToSeconds } from '../../../utils/time'
 
 const Home = () => {
-  const { remainingTime, start, pause, reset, runState } = useTimer({
-    initialTime: minutesToSeconds(25),
+  const { remainingSeconds, start, pause, reset, runState } = useTimer({
+    initialSeconds: minutesToSeconds(25),
   })
 
-  const parseTime = secondsToMinutes(remainingTime)
+  // 残り時間(秒)を分に変換する
+  const displayTime = secondsToMinutes(remainingSeconds)
+  const displayMinutes = displayTime.minutes
+  const displaySeconds = String(displayTime.sec).padStart(2, '0')
 
   return (
     <div className={styles.body}>
@@ -24,7 +27,7 @@ const Home = () => {
       </header>
       <main className={styles.main}>
         <div className={styles.timer_area}>
-          <p className={styles.timer}>{`${parseTime.minutes}:${parseTime.sec}`}</p>
+          <p className={styles.timer}>{`${displayMinutes}:${displaySeconds}`}</p>
           {runState === 'initial' && (
             <div className={styles.buttonWrapper}>
               <Button color="primary" onClick={start}>
