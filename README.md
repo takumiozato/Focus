@@ -72,7 +72,7 @@ componentの実体を持つindex.tsxと
 ※cssファイルを`/styles/`に配置するか迷ったが、
 スタイルに関するものも含めてcomponentに関わるものはすべて同じディレクトリにある方がわかりやすいと判断。
 
-### hooks（未実装）
+### hooks
 custom hooksはすべてここに配置。
 <br />
 ポモドーロタイマーを1セット終えたときにlocalstorage（ゆくゆくはFirestore）に保存する処理など
@@ -88,3 +88,6 @@ Next.jsの仕様上、`/pages/`に配置したファイルで自動ルーティ�
 すべてのcomponentに参照されうるstyleに関するファイルは、すべてここに置く。
 <br />
 component固有のstyleは、各componentフォルダ内に配置。
+
+### utils
+ヘルパー関数はここに配置。
