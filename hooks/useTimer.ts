@@ -22,6 +22,7 @@ const useTimer = (props: Props) => {
 
   function reset() {
     console.log('reset!')
+    setRemainingTime(props.initialTime)
     setRunState('initial')
   }
 
@@ -29,7 +30,7 @@ const useTimer = (props: Props) => {
   useInterval({
     onUpdate: () => setRemainingTime(remainingTime - 1),
     msDelay: 1000,
-    isPause: runState === 'pause',
+    isPause: runState !== 'running',
   })
 
   return { start, pause, reset, remainingTime, runState }
