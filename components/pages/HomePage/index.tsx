@@ -1,12 +1,16 @@
-import { useState } from 'react'
 import Head from 'next/head'
 import Header from '../../elements/Header'
 import Button from '../../elements/Button'
 import styles from './style.module.scss'
 import useTimer from '../../../hooks/useTimer'
+import { secondsToMinutes, minutesToSeconds } from '../../../utils/time'
 
 const Home = () => {
-  const { remainingTime, start, pause, reset, runState } = useTimer({ initialTime: 25 })
+  const { remainingTime, start, pause, reset, runState } = useTimer({
+    initialTime: minutesToSeconds(25),
+  })
+
+  const parseTime = secondsToMinutes(remainingTime)
 
   return (
     <div className={styles.body}>
@@ -20,7 +24,7 @@ const Home = () => {
       </header>
       <main className={styles.main}>
         <div className={styles.timer_area}>
-          <p className={styles.timer}>{remainingTime}</p>
+          <p className={styles.timer}>{`${parseTime.minutes}:${parseTime.sec}`}</p>
           {runState === 'initial' && (
             <div className={styles.buttonWrapper}>
               <Button color="primary" onClick={start}>
