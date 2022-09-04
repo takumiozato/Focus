@@ -3,9 +3,18 @@ import Header from '../../elements/Header'
 import Button from '../../elements/Button'
 import styles from './style.module.scss'
 import useTimer from '../../../hooks/useTimer'
+import { secondsToMinutes, minutesToSeconds } from '../../../utils/time'
 
 const Home = () => {
-  const { time, start, pause, reset, runState } = useTimer({ time: '25:00' })
+  const { remainingSeconds, start, pause, reset, runState } = useTimer({
+    initialSeconds: minutesToSeconds(25),
+  })
+
+  // 残り時間(秒)を分に変換する
+  const displayTime = secondsToMinutes(remainingSeconds)
+  const displayMinutes = displayTime.minutes
+  const displaySeconds = String(displayTime.sec).padStart(2, '0')
+
   return (
     <div className={styles.body}>
       <Head>
@@ -18,7 +27,7 @@ const Home = () => {
       </header>
       <main className={styles.main}>
         <div className={styles.timer_area}>
-          <p className={styles.timer}>{time}</p>
+          <p className={styles.timer}>{`${displayMinutes}:${displaySeconds}`}</p>
           {runState === 'initial' && (
             <div className={styles.buttonWrapper}>
               <Button color="primary" onClick={start}>
