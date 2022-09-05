@@ -5,6 +5,7 @@ export type RunState = 'initial' | 'running' | 'pause'
 
 type Props = {
   initialSeconds: number
+  finishFn?: () => void
 }
 const useTimer = (props: Props) => {
   const [remainingSeconds, setRemainingSeconds] = useState(props.initialSeconds)
@@ -29,6 +30,11 @@ const useTimer = (props: Props) => {
   // 指定した関数を、指定した間隔で実行する
   useInterval({
     onUpdate: () => {
+      if (remainingSeconds < 1) {
+        props.finishFn?.()
+        setRunState('initial')
+        return
+      }
       setRemainingSeconds(remainingSeconds - 1)
     },
     msDelay: 1000,
