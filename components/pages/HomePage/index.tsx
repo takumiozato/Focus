@@ -2,7 +2,7 @@ import Head from 'next/head'
 import Header from '../../elements/Header'
 import Button from '../../elements/Button'
 import styles from './style.module.scss'
-import useTimer from '../../../hooks/useTimer'
+import useTimer, { RunState } from '../../../hooks/useTimer'
 import { secondsToMinutes, minutesToSeconds } from '../../../utils/time'
 
 const Home = () => {
@@ -28,37 +28,51 @@ const Home = () => {
       <main className={styles.main}>
         <div className={styles.timer_area}>
           <p className={styles.timer}>{`${displayMinutes}:${displaySeconds}`}</p>
-          {runState === 'initial' && (
-            <div className={styles.buttonWrapper}>
-              <Button color="primary" onClick={start}>
-                集中開始
-              </Button>
-            </div>
-          )}
-          {runState === 'running' && (
-            <div className={styles.buttonWrapper}>
-              <Button color="skeleton" onClick={pause}>
-                一時停止
-              </Button>
-            </div>
-          )}
-          {runState === 'pause' && (
-            <>
-              <div className={styles.buttonWrapper}>
-                <Button color="primary" onClick={start}>
-                  再開
-                </Button>
-              </div>
-              <div className={styles.buttonWrapper}>
-                <Button color="skeleton" onClick={reset}>
-                  リセット
-                </Button>
-              </div>
-            </>
-          )}
+          <FocusModeButtons runState={runState} start={start} pause={pause} reset={reset} />
         </div>
       </main>
     </div>
+  )
+}
+
+type FocusModeButtonsProps = {
+  runState: RunState
+  start: () => void
+  pause: () => void
+  reset: () => void
+}
+const FocusModeButtons: React.FC<FocusModeButtonsProps> = ({ runState, start, pause, reset }) => {
+  return (
+    <>
+      {runState === 'initial' && (
+        <div className={styles.buttonWrapper}>
+          <Button color="primary" onClick={start}>
+            集中開始
+          </Button>
+        </div>
+      )}
+      {runState === 'running' && (
+        <div className={styles.buttonWrapper}>
+          <Button color="skeleton" onClick={pause}>
+            一時停止
+          </Button>
+        </div>
+      )}
+      {runState === 'pause' && (
+        <>
+          <div className={styles.buttonWrapper}>
+            <Button color="primary" onClick={start}>
+              再開
+            </Button>
+          </div>
+          <div className={styles.buttonWrapper}>
+            <Button color="skeleton" onClick={reset}>
+              リセット
+            </Button>
+          </div>
+        </>
+      )}
+    </>
   )
 }
 
