@@ -12,7 +12,7 @@ const useInterval = ({ onUpdate, msDelay, isPause }: Params) => {
   })
   useEffect(() => {
     if (isPause) {
-      return () => {}
+      return
     }
 
     const timerId = setInterval(() => onUpdateRef.current(), msDelay)
