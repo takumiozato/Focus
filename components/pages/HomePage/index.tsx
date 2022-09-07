@@ -7,11 +7,14 @@ import { secondsToMinutes, minutesToSeconds } from '../../../utils/time'
 import { useState } from 'react'
 
 const Home = () => {
+  const focusSeconds = minutesToSeconds(0.05)
+  const breakSeconds = minutesToSeconds(5)
   const [inBreak, setInBreak] = useState(false)
-  const { remainingSeconds, start, pause, reset, runState } = useTimer({
-    initialSeconds: minutesToSeconds(25),
+  const { remainingSeconds, handleSetRemainingSeconds, start, pause, reset, runState } = useTimer({
+    initialSeconds: focusSeconds,
     finishFn: () => {
       setInBreak(!inBreak)
+      handleSetRemainingSeconds(inBreak ? focusSeconds : breakSeconds)
     },
   })
 
@@ -20,12 +23,22 @@ const Home = () => {
   const displayMinutes = String(displayTime.minutes).padStart(2, '0')
   const displaySeconds = String(displayTime.sec).padStart(2, '0')
 
-  const skip = () => {
+  const onStart = () => {
+    start()
+  }
+  const onPause = () => {
+    pause()
+  }
+  const onReset = () => {
+    reset()
+  }
+  const onSkip = () => {
+    setInBreak(!inBreak)
     reset()
   }
 
   return (
-    <div className={styles.body}>
+    <div className={styles.body} data-mode={inBreak ? 'break' : 'focus'}>
       <Head>
         <title>Focus</title>
         <meta name="description" content="It's Pomodoro Timer." />
@@ -38,9 +51,9 @@ const Home = () => {
         <div className={styles.timer_area}>
           <p className={styles.timer}>{`${displayMinutes}:${displaySeconds}`}</p>
           {inBreak ? (
-            <BreakModeButtons runState={runState} start={start} skip={skip} />
+            <BreakModeButtons runState={runState} start={onStart} skip={onSkip} />
           ) : (
-            <FocusModeButtons runState={runState} start={start} pause={pause} reset={reset} />
+            <FocusModeButtons runState={runState} start={onStart} pause={onPause} reset={onReset} />
           )}
         </div>
       </main>

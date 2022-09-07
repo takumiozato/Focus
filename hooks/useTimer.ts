@@ -11,6 +11,10 @@ const useTimer = (props: Props) => {
   const [remainingSeconds, setRemainingSeconds] = useState(props.initialSeconds)
   const [runState, setRunState] = useState<RunState>('initial')
 
+  function handleSetRemainingSeconds(time: number) {
+    setRemainingSeconds(time)
+  }
+
   function start() {
     console.log('start!')
     setRunState('running')
@@ -41,7 +45,7 @@ const useTimer = (props: Props) => {
     isPause: runState !== 'running',
   })
 
-  return { start, pause, reset, remainingSeconds, runState }
+  return { handleSetRemainingSeconds, start, pause, reset, remainingSeconds, runState }
 }
 
 export default useTimer
