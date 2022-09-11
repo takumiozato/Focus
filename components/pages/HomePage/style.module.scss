@@ -3,6 +3,14 @@
 .body {
   height: 100vh;
   background: linear-gradient($color_primary, $color_primary_light);
+
+  &[data-mode='focus'] {
+    background: linear-gradient($color_primary, $color_primary_light);
+  }
+
+  &[data-mode='break'] {
+    background: linear-gradient($color_secondary, $color_secondary_light);
+  }
 }
 
 .main {
