@@ -8,6 +8,7 @@ const Header: React.FC = () => {
   return (
     <div className={styles.header}>
       <h1 className={styles.header_logo}>Focus Time</h1>
+      <h2>SVGの型が見つからないエラーはどうする？</h2>
       <nav>
         <ul className={styles.header_nav_list}>
           <li>
